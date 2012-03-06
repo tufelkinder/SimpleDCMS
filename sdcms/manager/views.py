@@ -1,3 +1,8 @@
+from django.http import HttpResponseRedirect, HttpResponse
+from django.template import RequestContext
+from datetime import datetime,date,timedelta
+from sdcms.manager.models import *
+
 # Create your views here.
 
 def index(request):

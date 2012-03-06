@@ -6,7 +6,7 @@ from django.db import models
 class NavigationItem(models.Model):
     slug = models.CharField("Short name",max_length=255,null=True,help_text="No spaces.")
     title = models.CharField(max_length=255,null=True,blank=True)
-    page = models.ForeignKey(Page,null=True,blank=True)
+    page = models.ForeignKey('Page',null=True,blank=True)
     link = models.CharField(max_length=255,null=True,blank=True)
     order = models.IntegerField(null=True,blank=True)
 
