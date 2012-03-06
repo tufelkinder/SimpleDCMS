@@ -15,6 +15,7 @@ def index(request):
     return render_to_response('index.html', { 'navitems': navitems,
                                               'page': page, })
 
+
 def go(request,page_name=None):
     templ = 'page.html'
     try:

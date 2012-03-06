@@ -16,9 +16,9 @@ class PageAdmin(admin.ModelAdmin):
 
     class Media:
         css = {
-            "all": ('/media/css/editor.css'),
+            'all': ('/media/css/page.css',),
         }
-        js = ('/media/js/jquery-min.js','/media/js/editor.js',)
+        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js',)
 
 
 class ElementAdmin(admin.ModelAdmin):
