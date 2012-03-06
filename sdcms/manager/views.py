@@ -11,16 +11,19 @@ def index(request):
     except Page.DoesNotExist:
         page = None
 
-    navitems = Navigation.objects.all()
+    navitems = NavigationItem.objects.all()
     return render_to_response('index.html', { 'navitems': navitems,
                                               'page': page, })
 
-def go(request,tag=None):
+def go(request,page_name=None):
+    templ = 'page.html'
     try:
-        page = Page.objects.get(slug=)
+        page = Page.objects.get(slug=page_name)
     except Page.DoesNotExist:
         page = None
 
-    navitems = Navigation.objects.all()
-    return render_to_response('page.html', { 'navitems': navitems,
+    navitems = NavigationItem.objects.all()
+    if page.template:
+        templ = 'media/' + page.template.html
+    return render_to_response(templ, { 'navitems': navitems,
                                               'page': page, })

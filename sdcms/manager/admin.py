@@ -8,7 +8,7 @@ class NavigationItemAdmin(admin.ModelAdmin):
 
 
 class TemplateAdmin(admin.ModelAdmin):
-    list_display = ('name','template',)
+    list_display = ('name','html',)
 
 
 class PageAdmin(admin.ModelAdmin):

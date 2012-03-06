@@ -10,6 +10,9 @@ class NavigationItem(models.Model):
     link = models.CharField(max_length=255,null=True,blank=True)
     order = models.IntegerField(null=True,blank=True)
 
+    class Meta:
+        ordering = ('order',)
+
     def __unicode__(self):
         return self.slug
 
@@ -31,7 +34,7 @@ class Page(models.Model):
     show_in_navigation = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return self.name
+        return self.slug
 
 
 class Element(models.Model):
