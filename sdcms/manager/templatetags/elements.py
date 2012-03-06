@@ -2,22 +2,27 @@ from sdcms.manager.models import *
 from django import template
 register = template.Library()
 
-def elem(obj):
+# usage: {{ e|elem:"sidebar"|safe }}
+
+@register.filter
+def elem(obj,obj2):
     try:
-        return Element.objects.get(name=obj).content
+        return Element.objects.get(name=obj2).content
     except:
         return ''
 
 
-def thumb(obj):
+@register.filter
+def thumb(obj,obj2):
     try:
-        return Photo.objects.get(name=obj).thumb
+        return Photo.objects.get(name=obj2).thumb
     except:
         return ''
 
 
-def photo(obj):
+@register.filter
+def photo(obj,obj2):
     try:
-        return Photo.objects.get(name=obj).image
+        return Photo.objects.get(name=obj2).image
     except:
         return ''
