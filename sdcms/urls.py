@@ -4,11 +4,12 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('sdcms.manager.views',
     # Examples:
-    url(r'^$', 'sdcms.manager.views.index', name='index'),
+    url(r'^$', 'index', name='index'),
     url(r'^go/(?P<page_name>\w+)/', 'go'),
-    url(r'^(?P<page_name>\w+)/', 'go'),
+    url(r'^gallery/(?P<gal_id>\w+)/', 'gallery'),
+    url(r'^gallery/', 'gallery'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

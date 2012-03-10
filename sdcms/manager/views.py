@@ -27,4 +27,16 @@ def go(request,page_name=None):
     if page.template:
         templ = 'media/' + page.template.html
     return render_to_response(templ, { 'navitems': navitems,
-                                              'page': page, })
+                                       'page': page, })
+
+def gallery(request,gal_id=None):
+    gallery = None
+    if gal_id:
+        gallery = Gallery.objects.get(pk=gal_id)
+
+    galleries = Gallery.objects.all()
+
+    return render_to_response('gallery.html',{'gallery': gallery,
+                                              'galleries': galleries, })
+
+
