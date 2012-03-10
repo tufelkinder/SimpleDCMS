@@ -1,4 +1,7 @@
 from django.db import models
+from PIL import Image
+from cStringIO import StringIO
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Create your models here.
 
@@ -52,16 +55,15 @@ class Graphic(models.Model):
     image = models.ImageField(upload_to='img',null=True,blank=True)
     thumb = models.ImageField(upload_to='img/thumb',null=True,blank=True)
 
+    def __unicode__(self):
+        return self.name
+
     def save(self):
         # We use PIL's Image object
         # Docs: http://www.pythonware.com/library/pil/handbook/image.htm
         # for additional comments: http://superjared.com/entry/django-quick-tips-2-image-thumbnails/
         # http://biohackers.net/wiki/Django1.0/Thumbnail
         if self.image and not self.thumb:
-            from PIL import Image
-            from cStringIO import StringIO
-            from django.core.files.uploadedfile import SimpleUploadedFile
-
             THUMBNAIL_SIZE = (100,100)
 
             thmb = Image.open(self.image)
@@ -83,8 +85,48 @@ class Graphic(models.Model):
 
         super(Graphic, self).save()
 
-    def __unicode__(self):
-        return self.name
-
 
     
+class Gallery(models.Model):
+    title = models.CharField(max_length=255,null=True)
+    image = models.ForeignKey('Photo',null=True,blank=True)
+
+    def __unicode__(self):
+        return self.title
+
+
+class Photo(models.Model):
+    caption = models.CharField(max_length=255,null=True)
+    image = models.ImageField(upload_to='img',null=True,blank=True)
+    thumb = models.ImageField(upload_to='img/thumb',null=True,blank=True)
+
+    def __unicode__(self):
+        return self.caption
+
+    def save(self):
+        # We use PIL's Image object
+        # Docs: http://www.pythonware.com/library/pil/handbook/image.htm
+        # for additional comments: http://superjared.com/entry/django-quick-tips-2-image-thumbnails/
+        # http://biohackers.net/wiki/Django1.0/Thumbnail
+        if self.image and not self.thumb:
+            THUMBNAIL_SIZE = (100,100)
+
+            thmb = Image.open(self.image)
+
+            if thmb.mode not in ('L', 'RGB'):
+                thmb = thmb.convert('RGB')
+
+            thmb.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+
+            # Save the thumbnail
+            temp_handle = StringIO()
+            thmb.save(temp_handle, "JPEG")
+            temp_handle.seek(0)
+
+            # Save to the thumbnail field
+            suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
+                    temp_handle.read())
+            self.thumb.save(suf.name, suf, save=False)
+
+        super(Photo, self).save()
+

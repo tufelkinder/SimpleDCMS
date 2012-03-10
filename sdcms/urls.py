@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'sdcms.manager.views.index', name='index'),
     url(r'^go/(?P<page_name>\w+)/', 'go'),
+    url(r'^(?P<page_name>\w+)/', 'go'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
