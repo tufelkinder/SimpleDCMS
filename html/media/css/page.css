@@ -1,0 +1,8 @@
+.template, .image {
+    width: 45%;
+    height: 40px;
+}
+
+.template {
+    float: left;
+}

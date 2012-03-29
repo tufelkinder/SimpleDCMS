@@ -18,7 +18,7 @@ class PageAdmin(admin.ModelAdmin):
         css = {
             'all': ('/media/css/page.css',),
         }
-        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js',)
+        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js')
 
 
 class ElementAdmin(admin.ModelAdmin):
@@ -32,6 +32,12 @@ class GraphicAdmin(admin.ModelAdmin):
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title','date','content')
     search_fields = ('title','date','content')
+
+    class Meta:
+        css = {
+            'all': ('/media/css/page.css',),
+        }
+        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js')
 
 #class GalleryAdmin(admin.ModelAdmin):
 #    list_display = ('name','image',)
