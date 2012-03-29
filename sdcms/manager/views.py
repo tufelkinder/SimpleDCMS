@@ -29,6 +29,7 @@ def go(request,page_name=None):
     return render_to_response(templ, { 'navitems': navitems,
                                        'page': page, })
 
+
 def gallery(request,gal_id=None):
     gallery = None
     if gal_id:
@@ -39,4 +40,14 @@ def gallery(request,gal_id=None):
     return render_to_response('gallery.html',{'gallery': gallery,
                                               'galleries': galleries, })
 
+
+def blog(request,blog_id=None):
+    article = None
+    if blog_id:
+        article = Article.objects.get(pk=blog_id)
+
+    articles = Article.objects.all() # [:5] # limit 5?
+
+    return render_to_response('blog.html', {'article': article,
+                                            'articles': articles, })
 
