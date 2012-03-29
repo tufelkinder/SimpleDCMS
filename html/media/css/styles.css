@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    font: 10px sans-serif;
+}
+
+#container {
+    margin: auto;
+    width: 900px;
+}
+
+#header {
+    
+}
+
+#nav {
+    
+}
+
+#nav ul {
+    
+}
+
+#nav ul li {
+    
+}
+
+#nav ul li:hover {
+    /* highlight in some way */
+}
+
+#nav ul li:hover > #nav ul li ul {
+    display: block;
+}
+
+#nav ul li ul {
+    display: none;
+}
+
+#content {
+    
+}
+
+.page_title {
+    
+}
+
+#footer {
+    
+}
+
+#article_container {
+    
+}
+
+.article_list {
+    
+}
+
+.article_list li {
+    
+}
+
+#gal_container {
+    
+}
+
+.thumb {
+    float: left;
+}
+
+.galrow {
+    clear: right;
+}

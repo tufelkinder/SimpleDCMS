@@ -5,9 +5,9 @@
         {% block body %}
         <div id="gal_container">
             {% if gallery %}{% for photo in gallery.photos %}
-            <div class="gal_photo{% if forloop.counter|divisibleby:"3" %} galrow{% endif %}"><img src="/media/{{ photo.thumb }}" alt="{{ photo.caption }}"/></div>{% endfor %}
+            <div class="thumb{% if forloop.counter|divisibleby:"3" %} galrow{% endif %}"><img src="/media/{{ photo.thumb }}" alt="{{ photo.caption }}"/></div>{% endfor %}
             {% else %}{% for gal in galleries %}
-            <div class="gal_gal{% if forloop.counter|divisibleby:"3" %} galrow{% endif %}"><img src="/media/{{ gal.image.thumb }}" alt="{{ gal.name }}"/></div>{% endfor %}
+            <div class="thumb{% if forloop.counter|divisibleby:"3" %} galrow{% endif %}"><img src="/media/{{ gal.image.thumb }}" alt="{{ gal.name }}"/></div>{% endfor %}
             {% endif %}
         </div>
         {% endblock %}
