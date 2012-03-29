@@ -3,8 +3,8 @@ from sdcms.manager.models import *
 
     
 class NavigationItemAdmin(admin.ModelAdmin):
-    list_display = ('slug','title','page','link','order')
-    list_editable = ('title','order',)
+    list_display = ('slug','name','page','link','order')
+    list_editable = ('name','order',)
 
 
 class TemplateAdmin(admin.ModelAdmin):

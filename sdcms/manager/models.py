@@ -46,6 +46,19 @@ class Page(models.Model):
     def __unicode__(self):
         return self.slug
 
+    def save(self):
+        if self.show_in_navigation:
+            if not NavigationItem.objects.filter(page=self):
+                navitem = NavigationItem(slug=self.slug,
+                                         name=self.title,
+                                         page=self)
+                navitem.save()
+        else:
+            navitems = NavigationItem.objects.filter(page=self)
+            if navitems:
+                navitems.delete()
+        super(Page, self).save()
+
 
 class Element(models.Model):
     name = models.CharField("Short name",max_length=255,null=True,help_text='Avoid spaces.')
@@ -96,7 +109,7 @@ class Graphic(models.Model):
     
 class Gallery(models.Model):
     name = models.CharField(max_length=255,null=True)
-    image = models.ForeignKey('Photo',null=True,blank=True)
+    image = models.ForeignKey('Photo',null=True,blank=True,related_name="main_img")
 
     def __unicode__(self):
         return self.name
