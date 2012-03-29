@@ -139,10 +139,6 @@ class Article(models.Model):
     image = models.ForeignKey(Photo,null=True,blank=True)
 
     def save(self):
-        # We use PIL's Image object
-        # Docs: http://www.pythonware.com/library/pil/handbook/image.htm
-        # for additional comments: http://superjared.com/entry/django-quick-tips-2-image-thumbnails/
-        # http://biohackers.net/wiki/Django1.0/Thumbnail
         if self.image and not self.thumb:
             THUMBNAIL_SIZE = (400,400)
 
