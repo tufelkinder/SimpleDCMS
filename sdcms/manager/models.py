@@ -157,6 +157,6 @@ class Article(models.Model):
             # Save to the thumbnail field
             suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
                     temp_handle.read())
-            self.thumb.save(suf.name, suf, save=False)
+            self.image.save(suf.name, suf, save=False)
 
         super(Article, self).save()
