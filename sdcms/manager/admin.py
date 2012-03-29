@@ -29,9 +29,18 @@ class GraphicAdmin(admin.ModelAdmin):
     list_display = ('name','caption','image',)
 
 
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title','date','content')
+    search_fields = ('title','date','content')
+
+#class GalleryAdmin(admin.ModelAdmin):
+#    list_display = ('name','image',)
+
+
 admin.site.register(NavigationItem,NavigationItemAdmin)
 admin.site.register(Template,TemplateAdmin)
 admin.site.register(Page,PageAdmin)
 admin.site.register(Element,ElementAdmin)
 admin.site.register(Graphic,GraphicAdmin)
-
+admin.site.register(Gallery)
+admin.site.register(Article,ArticleAdmin)

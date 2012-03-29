@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{% if article %}{{ article.title }}{% else %}News/Blog{% endif %}{% endblock %}
+
+        {% block page_title %}{% if article %}{{ article.title }}{% else %}News/Blog{% endif %}{% endblock%}
+        {% block body %}
+        <div id="article_container">
+            {% if article %}
+            <p><b>{{ article.title }}</b></p>
+            {{ article.content|safe }}
+            {% else %}
+            <ul class="article_list">{% for art in articles %}
+                <li>{{ article.title }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endblock %}

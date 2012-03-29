@@ -8,9 +8,12 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 class NavigationItem(models.Model):
     slug = models.CharField("Short name",max_length=255,null=True,help_text="No spaces.")
-    title = models.CharField(max_length=255,null=True,blank=True)
+    name = models.CharField("Display name",max_length=255,null=True,blank=True)
+    parent = models.ForeignKey('self',null=True,blank=True,help_text="Leaving this blank creates a new navigation option which may affect the layout of the site.")
     page = models.ForeignKey('Page',null=True,blank=True)
     link = models.CharField(max_length=255,null=True,blank=True)
+    image = models.ImageField(upload_to="img/nav/",blank=True,null=True)
+    rollover = models.ImageField(upload_to="img/nav/",blank=True,null=True)
     order = models.IntegerField(null=True,blank=True)
 
     class Meta:
@@ -18,6 +21,9 @@ class NavigationItem(models.Model):
 
     def __unicode__(self):
         return self.slug
+
+    def children(self):
+        return NavItem.objects.filter(parent=self)
 
 
 class Template(models.Model):
@@ -89,14 +95,18 @@ class Graphic(models.Model):
 
     
 class Gallery(models.Model):
-    title = models.CharField(max_length=255,null=True)
+    name = models.CharField(max_length=255,null=True)
     image = models.ForeignKey('Photo',null=True,blank=True)
 
     def __unicode__(self):
-        return self.title
+        return self.name
+
+    def photos(self):
+        return Photo.objects.filter(gallery=self)
 
 
 class Photo(models.Model):
+    gallery = models.ForeignKey(Gallery,null=True,blank=True)
     caption = models.CharField(max_length=255,null=True)
     image = models.ImageField(upload_to='img',null=True,blank=True)
     thumb = models.ImageField(upload_to='img/thumb',null=True,blank=True)

@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <title>{% block title %}{% endblock%}</title>
+        <link rel="stylesheet" type="text/css" href="/media/css/styles.css" />
+        <script type="text/javascript" src="/media/js/jquery-min.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <img src="/media/img/site_head.png" alt="site name..."/>
+            </div>
+            <div id="nav">
+                <ul>
+                    {% for nav in navitems %}
+                    <li{% if forloop.last %} class="navlast"{% endif %}>{% if nav.link or nav.page %}
+                        <a href="{% if nav.link %}{{ nav.link }}{% else %}/go/{{ nav.slug }}{% endif %}">{{ nav.name }}</a>
+                        {% else %}
+                        <a href="#" onclick="this.childNode[0].style.display = this.childNode[0].style.display == 'block' ? 'none': 'block';">{{ nav.name }}</a><ul>{% for child in nav.children %}<li><a href="/go/{{ child.name }}">{{ child.name }}</a></li>{% endfor %}</ul>
+                        {% endif %}
+                    </li>{% endfor %}
+                </ul>
+            </div>
+            <div id="content">
+                <h2 class="page_title">{% block page_title %}{% endblock %}</h2>
+                {% block body %}
+                {% endblock %}
+            </div>
+            <div id="footer">{% load elements %}
+                {{ e|elem:"footer"|safe }}
+            </div>
+        </div>
+    </body>
+</html>

@@ -26,8 +26,8 @@ def go(request,page_name=None):
     navitems = NavigationItem.objects.all()
     if page.template:
         templ = 'media/' + page.template.html
-    return render_to_response(templ, { 'navitems': navitems,
-                                       'page': page, })
+    return render_to_response(templ, {'navitems': navitems,
+                                      'page': page, })
 
 
 def gallery(request,gal_id=None):
@@ -37,8 +37,8 @@ def gallery(request,gal_id=None):
 
     galleries = Gallery.objects.all()
 
-    return render_to_response('gallery.html',{'gallery': gallery,
-                                              'galleries': galleries, })
+    return render_to_response('gallery.html', {'gallery': gallery,
+                                               'galleries': galleries, })
 
 
 def blog(request,blog_id=None):
