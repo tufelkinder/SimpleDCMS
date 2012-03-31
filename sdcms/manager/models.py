@@ -111,6 +111,9 @@ class Gallery(models.Model):
     name = models.CharField(max_length=255,null=True)
     image = models.ForeignKey('Photo',null=True,blank=True,related_name="main_img")
 
+    class Meta:
+        verbose_name_plural = 'galleries'
+
     def __unicode__(self):
         return self.name
 
