@@ -183,3 +183,20 @@ class Article(models.Model):
             self.image.save(suf.name, suf, save=False)
 
         super(Article, self).save()
+
+
+class Contact(models.Model):
+    date = models.DateTimeField(auto_now_add=True,editable=False)
+    first_name = models.CharField(max_length=255,null=True,blank=True) # remove blank=True to require
+    last_name = models.CharField(max_length=255,null=True,blank=True)
+    company = models.CharField(max_length=255,null=True,blank=True)
+    title = models.CharField(max_length=255,null=True,blank=True)
+    address = models.CharField(max_length=255,null=True,blank=True)
+    address2 = models.CharField(max_length=255,null=True,blank=True)
+    city = models.CharField(max_length=255,null=True,blank=True)
+    state = models.CharField(max_length=255,null=True,blank=True)
+    zip_code = models.CharField(max_length=255,null=True,blank=True)
+    phone = models.CharField(max_length=255,null=True,blank=True)
+    fax = models.CharField(max_length=255,null=True,blank=True)
+    email = models.CharField(max_length=255,null=True,blank=True)
+

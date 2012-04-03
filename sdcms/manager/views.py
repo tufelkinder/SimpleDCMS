@@ -52,3 +52,14 @@ def blog(request,blog_id=None):
     return render_to_response('blog.html', {'article': article,
                                             'articles': articles, })
 
+def contact(request):
+    if request.POST:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+            #send_mail(contact.to_msg())
+            return HttpResponseRedirect(request.POST.get('redirect','/'))
+    else:
+        form = ContactForm()
+    return render_to_response('contact.html', {'form': form,},
+                              context_instance=RequestContext(request))

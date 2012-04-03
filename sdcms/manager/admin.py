@@ -42,6 +42,10 @@ class ArticleAdmin(admin.ModelAdmin):
 #class GalleryAdmin(admin.ModelAdmin):
 #    list_display = ('name','image',)
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('first_name','last_name','company','phone','email','date')
+    search_fields = ('first_name','last_name','company','phone','email',)
+
 
 admin.site.register(NavigationItem,NavigationItemAdmin)
 admin.site.register(Template,TemplateAdmin)
@@ -50,3 +54,4 @@ admin.site.register(Element,ElementAdmin)
 admin.site.register(Graphic,GraphicAdmin)
 admin.site.register(Gallery)
 admin.site.register(Article,ArticleAdmin)
+admin.site.register(Contact,ContactAdmin)
