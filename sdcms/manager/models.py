@@ -190,8 +190,8 @@ class Article(models.Model):
 
 class Contact(models.Model):
     date = models.DateTimeField(auto_now_add=True,editable=False)
-    first_name = models.CharField(max_length=255,null=True,blank=True) # remove blank=True to require
-    last_name = models.CharField(max_length=255,null=True,blank=True)
+    first_name = models.CharField(max_length=255,null=True) # remove blank=True to require
+    last_name = models.CharField(max_length=255,null=True)
     company = models.CharField(max_length=255,null=True,blank=True)
     title = models.CharField(max_length=255,null=True,blank=True)
     address = models.CharField(max_length=255,null=True,blank=True)
@@ -202,4 +202,33 @@ class Contact(models.Model):
     phone = models.CharField(max_length=255,null=True,blank=True)
     fax = models.CharField(max_length=255,null=True,blank=True)
     email = models.CharField(max_length=255,null=True,blank=True)
+
+    def to_msg(self):
+        msg = ''
+        if self.date:
+            msg += 'Submitted on: ' + str(self.date)
+        msg += '\nName: ' + self.first_name + ' ' + self.last_name
+        if self.company:
+            msg += '\nCompany: ' + self.company
+        if self.title:
+            msg += '\nTitle: ' + self.title
+        if self.address:
+            msg += '\nAddress: ' + self.address
+        if self.address2:
+            msg += '\nAddress 2: ' + self.address2
+        if self.city:
+            msg += '\nCity: ' + self.city
+        if self.state:
+            msg += ', ' + self.state
+        if self.zip_code:
+            msg += ' ' + self.zip_code
+        if self.phone:
+            msg += '\nPhone: ' + self.phone
+        if self.fax:
+            msg += '\nFax: ' + self.fax
+        if self.email:
+            msg += '\nEmail: ' + self.email
+        return msg
+
+
 
