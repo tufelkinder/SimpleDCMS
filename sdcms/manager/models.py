@@ -23,7 +23,7 @@ class NavigationItem(models.Model):
         return self.slug
 
     def children(self):
-        return NavItem.objects.filter(parent=self)
+        return NavigationItem.objects.filter(parent=self)
 
 
 class Template(models.Model):
