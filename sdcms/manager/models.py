@@ -203,6 +203,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=255,null=True,blank=True)
     fax = models.CharField(max_length=255,null=True,blank=True)
     email = models.CharField(max_length=255,null=True,blank=True)
+    message = models.TextField(null=True,blank=True)
 
     def to_msg(self):
         msg = ''
@@ -229,6 +230,8 @@ class Contact(models.Model):
             msg += '\nFax: ' + self.fax
         if self.email:
             msg += '\nEmail: ' + self.email
+        if self.message:
+            msg += '\nMessage: ' + self.message
         return msg
 
 
