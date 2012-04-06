@@ -1,6 +1,6 @@
 # Django settings for manager project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -14,7 +14,7 @@ SITE_NAME = 'test' # no spaces here!
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': SITE_NAME,                      # Or path to database file if using sqlite3.
         'USER': 'test',                      # Not used with sqlite3.
         'PASSWORD': 'test',                  # Not used with sqlite3.
@@ -54,7 +54,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/var/www/web/' + SITE_NAME + '/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
