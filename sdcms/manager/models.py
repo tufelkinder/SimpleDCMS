@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from PIL import Image
 from cStringIO import StringIO
