@@ -37,9 +37,11 @@ def gallery(request,gal_id=None):
         gallery = Gallery.objects.get(pk=gal_id)
 
     galleries = Gallery.objects.all()
+    navitems = NavigationItem.objects.all()
 
     return render_to_response('gallery.html', {'gallery': gallery,
-                                               'galleries': galleries, })
+                                               'galleries': galleries,
+                                               'navitems': navitems, })
 
 
 def blog(request,blog_id=None):
@@ -48,7 +50,9 @@ def blog(request,blog_id=None):
         article = Article.objects.get(pk=blog_id)
 
     articles = Article.objects.all() # [:5] # limit 5?
+    navitems = NavigationItem.objects.all()
 
     return render_to_response('blog.html', {'article': article,
-                                            'articles': articles, })
+                                            'articles': articles,
+                                            'navitems': navitems, })
 
