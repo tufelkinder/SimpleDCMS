@@ -1,8 +1,10 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.core.mail import send_mail
 from datetime import datetime,date,timedelta
 from sdcms.manager.models import *
+from sdcms.manager.forms import *
 
 # Create your views here.
 
@@ -56,3 +58,21 @@ def blog(request,blog_id=None):
                                             'articles': articles,
                                             'navitems': navitems, })
 
+def contact(request):
+    TO_EMAIL = ''
+    FROM_EMAIL = ''
+    SUBJECT = 'Web site submission'
+    if request.POST:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+            send_mail(SUBJECT, contact.to_msg(),
+                      FROM_EMAIL, [TO_EMAIL],fail_silently=False)
+            return HttpResponseRedirect(request.POST.get('redirect','/'))
+    else:
+        form = ContactForm()
+    navitems = NavigationItem.objects.all()
+    page = Page.objects.get(slug='contact') # not very resilient, I know...
+    return render_to_response('contact.html', {'form': form, 'page': page,
+                                               'navitems': navitems, },
+                              context_instance=RequestContext(request))

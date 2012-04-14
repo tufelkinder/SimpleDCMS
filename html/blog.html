@@ -1,16 +1,19 @@
 {% extends "base.html" %}
-{% block title %}{% if article %}{{ article.title }}{% else %}News/Blog{% endif %}{% endblock %}
+{% block title %}{% if article %}{{ article.title }}{% else %}KCC Blog{% endif %}{% endblock %}
 
-        {% block page_title %}{% if article %}{{ article.title }}{% else %}News/Blog{% endif %}{% endblock%}
+        {% block page_title %}{% if article %}{{ article.title }}{% else %}KCC Blog{% endif %}{% endblock%}
         {% block body %}
         <div id="article_container">
             {% if article %}
-            <p><b>{{ article.title }}</b></p>
-            {{ article.content|safe }}
+            <p>{% if article.image.image %}<img src="/media/{{ article.image.image }}" alt="" style="float: right; width: 250px;"/>{% endif %}
+            {{ article.content|safe }}</p>
             {% else %}
-            <ul class="article_list">{% for art in articles %}
-                <li>{{ article.title }}</li>{% endfor %}
-            </ul>
+            <p><b>{{ articles.0.title }}</b></p>
+            <p>{% if articles.0.image.image %}<img src="/media/{{ articles.0.image.image }}" alt="" style="float: right; width: 250px;"/>{% endif %}
+            {{ articles.0.content|safe }}</p>
             {% endif %}
+            <ul class="article_list">{% for art in articles %}
+                {% if article.id != art.id %}<li><a href="/blog/{{ art.id }}/">{{ art.title }}</a></li>{% endif %}{% endfor %}
+            </ul>
         </div>
         {% endblock %}

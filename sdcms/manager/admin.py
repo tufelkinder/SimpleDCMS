@@ -39,8 +39,20 @@ class ArticleAdmin(admin.ModelAdmin):
         }
         js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js')
 
-#class GalleryAdmin(admin.ModelAdmin):
-#    list_display = ('name','image',)
+
+class PhotoInline(admin.ModelAdmin):
+    model = Photo
+    extra = 1
+
+
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ('name','image',)
+    inlines = [PhotoInline,]
+
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('first_name','last_name','company','phone','email','date')
+    search_fields = ('first_name','last_name','company','phone','email',)
 
 
 admin.site.register(NavigationItem,NavigationItemAdmin)
@@ -50,3 +62,5 @@ admin.site.register(Element,ElementAdmin)
 admin.site.register(Graphic,GraphicAdmin)
 admin.site.register(Gallery)
 admin.site.register(Article,ArticleAdmin)
+admin.site.register(Contact,ContactAdmin)
+admin.site.register(Photo)

@@ -12,6 +12,7 @@ urlpatterns = patterns('sdcms.manager.views',
     url(r'^gallery/', 'gallery'),
     url(r'^blog/(?P<blog_id>\w+)/', 'blog'),
     url(r'^blog/', 'blog'),
+    url(r'^contact/', 'contact'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
