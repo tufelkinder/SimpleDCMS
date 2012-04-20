@@ -4,20 +4,20 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Walt S', 'tufelkinder@yahoo.com'),
+    ('Walt', 'tufelkinder@yahoo.com'),
 )
 
 MANAGERS = ADMINS
 
-DOMAIN = 'test.com'
-SITE_NAME = 'test' # no spaces here!
+DOMAIN = 'test_domain.com'
+SITE_NAME = 'test_site_name' # no spaces here!
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': SITE_NAME,                      # Or path to database file if using sqlite3.
-        'USER': 'test',                      # Not used with sqlite3.
-        'PASSWORD': 'test',                  # Not used with sqlite3.
+        'USER': 'test_user',                      # Not used with sqlite3.
+        'PASSWORD': 'test_pass',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
