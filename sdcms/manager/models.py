@@ -156,6 +156,25 @@ class Photo(models.Model):
                     temp_handle.read())
             self.thumb.save(suf.name, suf, save=False)
 
+            THUMBNAIL_SIZE = (600,600)
+
+            thmb = Image.open(self.image)
+
+            if thmb.mode not in ('L', 'RGB'):
+                thmb = thmb.convert('RGB')
+
+            thmb.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+
+            # Save the thumbnail
+            temp_handle = StringIO()
+            thmb.save(temp_handle, "JPEG")
+            temp_handle.seek(0)
+
+            # Save to the thumbnail field
+            suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
+                    temp_handle.read())
+            self.image.save(suf.name, suf, save=False)
+
         super(Photo, self).save()
 
 

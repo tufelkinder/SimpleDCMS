@@ -40,9 +40,10 @@ class ArticleAdmin(admin.ModelAdmin):
         js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js')
 
 
-class PhotoInline(admin.ModelAdmin):
+class PhotoInline(admin.TabularInline):
     model = Photo
     extra = 1
+    exclude = ('thumb',)
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -60,7 +61,7 @@ admin.site.register(Template,TemplateAdmin)
 admin.site.register(Page,PageAdmin)
 admin.site.register(Element,ElementAdmin)
 admin.site.register(Graphic,GraphicAdmin)
-admin.site.register(Gallery)
+admin.site.register(Gallery,GalleryAdmin)
 admin.site.register(Article,ArticleAdmin)
 admin.site.register(Contact,ContactAdmin)
 admin.site.register(Photo)
