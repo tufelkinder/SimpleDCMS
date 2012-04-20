@@ -48,6 +48,7 @@ class Page(models.Model):
         return self.slug
 
     def save(self):
+        super(Page, self).save()
         if self.show_in_navigation:
             if not NavigationItem.objects.filter(page=self):
                 navitem = NavigationItem(slug=self.slug,
@@ -58,7 +59,6 @@ class Page(models.Model):
             navitems = NavigationItem.objects.filter(page=self)
             if navitems:
                 navitems.delete()
-        super(Page, self).save()
 
 
 class Element(models.Model):
