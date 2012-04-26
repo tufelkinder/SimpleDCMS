@@ -26,7 +26,7 @@ class ElementAdmin(admin.ModelAdmin):
 
 
 class GraphicAdmin(admin.ModelAdmin):
-    list_display = ('name','caption','image',)
+    list_display = ('name','caption','image','to_path',)
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -56,6 +56,10 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = ('first_name','last_name','company','phone','email',)
 
 
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ('name','pdf','to_path',)
+
+
 admin.site.register(NavigationItem,NavigationItemAdmin)
 admin.site.register(Template,TemplateAdmin)
 admin.site.register(Page,PageAdmin)
@@ -64,4 +68,5 @@ admin.site.register(Graphic,GraphicAdmin)
 admin.site.register(Gallery,GalleryAdmin)
 admin.site.register(Article,ArticleAdmin)
 admin.site.register(Contact,ContactAdmin)
+admin.site.register(Document,DocumentAdmin)
 admin.site.register(Photo)

@@ -76,3 +76,10 @@ def contact(request):
     return render_to_response('contact.html', {'form': form, 'page': page,
                                                'navitems': navitems, },
                               context_instance=RequestContext(request))
+
+
+def g_path(request,g_id=None):
+    if g_id == None:
+        return render_to_response('empty.html')
+    graphic = Graphic.objects.get(pk=g_id)
+    return render_to_response('empty.html', {'message': graphic.to_path(), })

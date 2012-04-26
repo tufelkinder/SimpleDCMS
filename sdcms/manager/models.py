@@ -35,6 +35,17 @@ class Template(models.Model):
         return self.name
 
 
+class Document(models.Model):
+    name = models.CharField(max_length=255,null=True)
+    pdf = models.FileField(upload_to='docs',null=True,blank=True)
+
+    def __unicode__(self):
+        return str(self.pdf) or self.name
+
+    def to_path(self):
+        return '/media/' + str(self.pdf)
+
+
 class Page(models.Model):
     slug = models.CharField("Short name",max_length=255,null=True,help_text="No spaces.")
     title = models.CharField(max_length=255,null=True,blank=True)
@@ -79,30 +90,44 @@ class Graphic(models.Model):
     def __unicode__(self):
         return self.name
 
+    def to_path(self):
+        return '/media/' + str(self.image)
+
     def save(self):
         # We use PIL's Image object
         # Docs: http://www.pythonware.com/library/pil/handbook/image.htm
         # for additional comments: http://superjared.com/entry/django-quick-tips-2-image-thumbnails/
         # http://biohackers.net/wiki/Django1.0/Thumbnail
         if self.image and not self.thumb:
+            IMG_SIZE = (600,600)
             THUMBNAIL_SIZE = (100,100)
 
             thmb = Image.open(self.image)
+            img = thmb.copy()
 
             if thmb.mode not in ('L', 'RGB'):
                 thmb = thmb.convert('RGB')
+                img = img.convert('RGB')
 
             thmb.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+            img.thumbnail(IMG_SIZE, Image.ANTIALIAS)
 
             # Save the thumbnail
             temp_handle = StringIO()
             thmb.save(temp_handle, "JPEG")
             temp_handle.seek(0)
+            img_handle = StringIO()
+            img.save(img_handle, "JPEG")
+            img_handle.seek(0)
 
             # Save to the thumbnail field
             suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
                     temp_handle.read())
             self.thumb.save(suf.name, suf, save=False)
+
+            suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
+                    img_handle.read())
+            self.image.save(suf.name, suf, save=False)
 
         super(Graphic, self).save()
 
