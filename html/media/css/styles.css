@@ -29,7 +29,7 @@ body {
     /* highlight in some way */
 }
 
-#nav ul li:hover > #nav ul li ul {
+#nav ul li:hover > ul {
     display: block;
 }
 
