@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Generic Home Page{% endblock %}
+{% block title %}{% if page.title %}{{ page.title }}{% else %}Home Page{% endif %}{% endblock %}
 
         {% block body %}
         {{ page.content|safe }}
