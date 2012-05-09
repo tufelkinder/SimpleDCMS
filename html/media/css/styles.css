@@ -18,7 +18,7 @@ body {
 }
 
 #nav ul {
-    
+    list-style-type: none;
 }
 
 #nav ul li {
@@ -46,7 +46,7 @@ body {
 }
 
 #footer {
-    
+    font-size: 75%;
 }
 
 #article_container {
