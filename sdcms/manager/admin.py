@@ -33,7 +33,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title','date','content')
     search_fields = ('title','date','content')
 
-    class Meta:
+    class Media:
         css = {
             'all': ('/media/css/page.css',),
         }
