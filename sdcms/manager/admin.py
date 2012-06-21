@@ -30,8 +30,9 @@ class GraphicAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title','date','content')
+    list_display = ('title','date','content','published')
     search_fields = ('title','date','content')
+    list_editable = ('published',)
 
     class Media:
         css = {

@@ -27,7 +27,7 @@ def go(request,page_name=None):
         page = None
 
     navitems = NavigationItem.objects.all()
-    if page.template:
+    if page and page.template:
         templ = 'media/' + page.template.html
     return render_to_response(templ, {'navitems': navitems,
                                       'page': page, })
@@ -48,10 +48,13 @@ def gallery(request,gal_id=None):
 
 def blog(request,blog_id=None):
     article = None
+    articles = Article.objects.filter(published=True) # [:5] # limit 5?
     if blog_id:
         article = Article.objects.get(pk=blog_id)
+    if not article:
+        article = articles[0]
 
-    articles = Article.objects.all() # [:5] # limit 5?
+    articles = articles.exclude(pk=article.pk) # [:5] # limit 5?
     navitems = NavigationItem.objects.all()
 
     return render_to_response('blog.html', {'article': article,

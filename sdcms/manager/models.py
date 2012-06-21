@@ -200,29 +200,10 @@ class Article(models.Model):
     date = models.DateTimeField(auto_now_add=True,null=True)
     content = models.TextField(null=True,blank=True)
     image = models.ForeignKey(Photo,null=True,blank=True)
+    published = models.BooleanField(default=False)
 
-    def save(self):
-        if self.image and not self.thumb:
-            THUMBNAIL_SIZE = (400,400)
-
-            thmb = Image.open(self.image)
-
-            if thmb.mode not in ('L', 'RGB'):
-                thmb = thmb.convert('RGB')
-
-            thmb.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
-
-            # Save the thumbnail
-            temp_handle = StringIO()
-            thmb.save(temp_handle, "JPEG")
-            temp_handle.seek(0)
-
-            # Save to the thumbnail field
-            suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
-                    temp_handle.read())
-            self.image.save(suf.name, suf, save=False)
-
-        super(Article, self).save()
+    class Meta:
+        ordering = ('-date',)
 
 
 class Contact(models.Model):
