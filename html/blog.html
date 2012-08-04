@@ -13,7 +13,7 @@
             {{ articles.0.content|safe }}</p>
             {% endif %}
             <ul class="article_list">{% for art in articles %}
-                {% if article.id != art.id and articles.0.id != art.id  %}<li><a href="/blog/{{ art.id }}/">{{ art.title }} ({{ art.date }})</a></li>{% endif %}{% endfor %}
+                 <li><a href="/blog/{{ art.id }}/">{{ art.title }} <!-- ({{ art.date }}) --> </a></li>{% endfor %}
             </ul>
         </div>
         {% endblock %}
