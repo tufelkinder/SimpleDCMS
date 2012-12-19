@@ -1,5 +1,5 @@
 from django.contrib import admin
-from sdcms.manager.models import *
+from manager.models import *
 
     
 class NavigationItemAdmin(admin.ModelAdmin):

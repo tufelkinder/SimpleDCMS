@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from sdcms.manager.models import *
+from manager.models import *
 
 
 class ContactForm(ModelForm):

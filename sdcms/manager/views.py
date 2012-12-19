@@ -3,8 +3,8 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.core.mail import send_mail
 from datetime import datetime,date,timedelta
-from sdcms.manager.models import *
-from sdcms.manager.forms import *
+from manager.models import *
+from manager.forms import *
 
 # Create your views here.
 
