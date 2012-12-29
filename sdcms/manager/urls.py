@@ -4,7 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('sdcms.manager.views',
+urlpatterns = patterns('manager.views',
     # Examples:
     url(r'^$', 'index', name='index'),
     url(r'^go/(?P<page_name>[-\w]+)/', 'go'),

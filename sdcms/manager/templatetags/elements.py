@@ -1,4 +1,4 @@
-from sdcms.manager.models import *
+from manager.models import *
 from django import template
 register = template.Library()
 
