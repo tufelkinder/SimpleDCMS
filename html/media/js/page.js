@@ -5,7 +5,7 @@ var suffix = '\')">Insert Image</a>';
 
 function init () {
     CKEDITOR.replace( 'id_content' );
-    django.jQuery('.header div').append('<span id="header_url"></span>');
+    django.jQuery('.field-header div').append('<span id="header_url"></span>');
     django.jQuery('#id_header').change(function() {
         updateHeaderLink();
     });
