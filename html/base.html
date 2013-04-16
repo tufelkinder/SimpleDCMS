@@ -165,25 +165,3 @@
     <script src="/media/js/bootstrap-min.js"></script>
   </body>
 </html>
-      <div id="container">
-            <div id="nav">
-                <ul>
-                    {% for nav in navitems %}
-                    {% if not nav.parent %}<li{% if forloop.last %} class="navlast"{% endif %}>{% if not nav.children %}
-                        <a href="{% if nav.link %}{{ nav.link }}{% else %}/go/{{ nav.slug }}{% endif %}">{{ nav.name }}</a>
-                        {% else %}
-                        <a href="#" onclick="this.childNode[0].style.display = this.childNode[0].style.display == 'block' ? 'none': 'block';">{{ nav.name }}</a><ul class="sublevel">{% for child in nav.children %}<li><a href="/go/{{ child.slug }}">{{ child.name }}</a></li>{% endfor %}</ul>
-                        {% endif %}
-                    </li>{% endif %}{% endfor %}
-                </ul>
-            </div>
-            <div id="content">
-                <h2 class="page_title">{% block page_title %}{% endblock %}</h2>
-                {% block body %}
-                {% endblock %}
-            </div>
-            <div id="footer">
-            </div>
-        </div>
-    </body>
-</html>
