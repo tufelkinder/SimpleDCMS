@@ -24,6 +24,8 @@ DATABASES = {
     }
 }
 
+ALLOWED_HOSTS = ['www.' + DOMAIN, DOMAIN]
+
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = ''
 # EMAIL_HOST_PASSWORD = ''
@@ -127,6 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
+    'grappelli',
     'django.contrib.admin',
     'manager',
     # Uncomment the next line to enable admin documentation:
