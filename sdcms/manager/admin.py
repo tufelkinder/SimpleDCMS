@@ -18,7 +18,7 @@ class PageAdmin(admin.ModelAdmin):
         css = {
             'all': ('/media/css/page.css',),
         }
-        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js')
+        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js','/static/filebrowser/js/FB_CKEditor.js')
 
 
 class ElementAdmin(admin.ModelAdmin):
@@ -38,7 +38,7 @@ class ArticleAdmin(admin.ModelAdmin):
         css = {
             'all': ('/media/css/page.css',),
         }
-        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js')
+        js = ('/media/js/ckeditor/ckeditor.js','/media/js/page.js','/static/filebrowser/js/FB_CKEditor.js')
 
 
 class PhotoInline(admin.TabularInline):

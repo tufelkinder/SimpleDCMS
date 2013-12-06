@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from filebrowser.sites import site
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -17,13 +18,9 @@ urlpatterns = patterns('manager.views',
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    (r'^grappelli/', include('grappelli.urls')),
-
+    url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^admin/filebrowser/', include(site.urls)),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-
-    # this entry should be last
-#    url(r'^(?P<page_name>[-\w]+)$', 'go', name='go'),
 
 )
