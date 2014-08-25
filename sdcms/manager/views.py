@@ -28,7 +28,7 @@ def go(request,page_name=None):
 
     navitems = NavigationItem.objects.all()
     if page and page.template:
-        templ = 'media/' + page.template.html
+        templ = 'media/' + page.template.html.name
     return render_to_response(templ, {'navitems': navitems,
                                       'page': page, })
 
