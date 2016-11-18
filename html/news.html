@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}{% if article %}{{ article.title }}{% else %}KCC Blog{% endif %}{% endblock %}
+
+        {% block content %}
+        <div class="row">
+          <div class="col-xs-12">
+            <h5>News</h5>
+            {% if page.header %}<img src="/media/{{ page.image }}"/> {% endif %}
+          </div>
+        </div>
+        <div id="row">
+          <div class="col-xs-12 col-md-8"
+            {% if article %}
+            <p>{% if article.image.image %}<img src="/media/{{ article.image.image }}" alt="" style="float: right; width: 250px;"/>{% endif %}
+            {{ article.content|safe }}</p>
+            {% else %}
+            <p><b>{{ articles.0.title }}</b></p>
+            <p>{% if articles.0.image.image %}<img src="/media/{{ articles.0.image.image }}" alt="" style="float: right; width: 250px;"/>{% endif %}
+            {{ articles.0.content|safe }}</p>
+            {% endif %}
+            <ul class="article_list">{% for art in articles %}
+                 <li><a href="/blog/{{ art.id }}/">{{ art.title }} <!-- ({{ art.date }}) --> </a></li>{% endfor %}
+            </ul>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <h5>Sidebar Content</h5>
+            <p>
+            </p>
+          </div>
+        </div>
+        {% endblock %}

@@ -1,14 +1,28 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block title %}{% if page.title %}{{ page.title }}{% else %}Site Title{% endif %}{% endblock %}
 
-        {% block page_title %}{{ page.title }}{% endblock%}
-        {% block body %}
-        {{ page.content|safe }}
-        <form action method="post">
-            {% csrf_token %}
-            <ul>
-                {{ form.as_ul }}
-                <li><input type="submit" value="Send"/></li>
-            </ul>
-        </form>
+        {% block content %}
+        <div class="row">
+          <div class="col-xs-12">
+            <h5>{{ page.title }}</h5>
+            {% if page.header %}<img src="/media/{{ page.header }}"/> {% endif %}
+          </div>
+        </div>
+        <div class="row">
+          {{ page.content|safe }}
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-5">
+            <form action method="post" class="contact_form">
+                {% csrf_token %}
+                <ul>
+                    {{ form.as_ul }}
+                    <li><input type="submit" value="Send"/></li>
+                </ul>
+            </form>
+          </div>
+          <div class="col-xs-12 col-md-7">
+            <iframe src="https://www.google.com/maps/embed" width="450" height="450" frameborder="0" style="border:0; float: right; margin-right: 10px;" allowfullscreen></iframe>
+          </div>
+        </div>
         {% endblock %}

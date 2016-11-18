@@ -1,167 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Required meta tags always come first -->
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock%}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="/media/img/favicon.ico" />
-    <link href="/media/css/bootstrap-min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 20px;
-        padding-bottom: 60px;
-      }
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-      /* Custom container */
-      .container {
-        margin: 0 auto;
-        max-width: 1000px;
-      }
-      .container > hr {
-        margin: 60px 0;
-      }
-
-      /* Main marketing message and sign up button */
-      .jumbotron {
-        margin: 80px 0;
-        text-align: center;
-      }
-      .jumbotron h1 {
-        font-size: 100px;
-        line-height: 1;
-      }
-      .jumbotron .lead {
-        font-size: 24px;
-        line-height: 1.25;
-      }
-      .jumbotron .btn {
-        font-size: 21px;
-        padding: 14px 24px;
-      }
-
-      /* Supporting marketing content */
-      .marketing {
-        margin: 60px 0;
-      }
-      .marketing p + h4 {
-        margin-top: 28px;
-      }
-
-
-      /* Customize the navbar links to be fill the entire space of the .navbar */
-      .navbar .navbar-inner {
-        padding: 0;
-      }
-      .navbar .nav {
-        margin: 0;
-        display: table;
-        width: 100%;
-      }
-      .navbar .nav li {
-        display: table-cell;
-        width: 1%;
-        float: none;
-      }
-      .navbar .nav li a {
-        font-weight: bold;
-        text-align: center;
-        border-left: 1px solid rgba(255,255,255,.75);
-        border-right: 1px solid rgba(0,0,0,.1);
-      }
-      .navbar .nav li:first-child a {
-        border-left: 0;
-        border-radius: 3px 0 0 3px;
-      }
-      .navbar .nav li:last-child a {
-        border-right: 0;
-        border-radius: 0 3px 3px 0;
-      }
-    </style>
-    <link href="/media/css/bootstrap-responsive-min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/media/css/styles.css" />
-    <script type="text/javascript" src="/media/js/jquery-min.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-    {% block media %}{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body>
-
     <div class="container">
-
-      <div class="masthead">
-        <h3 class="muted">Project name</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                {% for nav in navitems %}
-                    {% if not nav.parent %}
-                        {% if not nav.children %}
-                            <li{% if page and nav.page and page.id == nav.id %} class="active"{% endif %}><a href="{% if nav.link %}{{ nav.link }}{% else %}/go/{{ nav.slug }}{% endif %}">{{ nav.name }}</a></li>
-                        {% else %}
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ nav.name }} <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                {% for child in nav.children %}
-                                    <li{% if page and page.id == child.id %} class="active"{% endif %}><a href="{% if child.link %}{{ child.link }}{% else %}/go/{{ child.slug }}{% endif %}">{{ child.name }}</a></li>
-                                {% endfor %}
-                                </ul>
-                            </li>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                <!-- <li><form action="/search" method="get"><input type="text" name="q" id="id_q" placeholder="Search by keyword or topic"{% if query %} value="{{ query }}"{% endif %}/></form></li> -->
-              </ul>
-            </div>
+      <div class="row">
+        <div class="col-xs-10">&nbsp;</div>
+      </div>
+      <div class="row flex-items-xs-middle">
+        <div class="col-xs-12 col-md-6">
+          <h3 class="main"><a href="/">Organization</a></h3>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="navbar">
+            <ul class="nav">
+              {% for nav in navitems %}
+                  {% if not nav.parent %}
+                      {% if not nav.children %}
+                          <li{% if page and nav.page and page.id == nav.id %} class="active"{% endif %}><a href="{% if nav.link %}{{ nav.link }}{% else %}/go/{{ nav.slug }}{% endif %}">{{ nav.name }}</a></li>
+                      {% else %}
+                          <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ nav.name }} <b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                              {% for child in nav.children %}
+                                  <li{% if page and page.id == child.id %} class="active"{% endif %}><a href="{% if child.link %}{{ child.link }}{% else %}/go/{{ child.slug }}{% endif %}">{{ child.name }}</a></li>
+                              {% endfor %}
+                              </ul>
+                          </li>
+                      {% endif %}
+                  {% endif %}
+              {% endfor %}
+            </ul>
           </div>
-        </div><!-- /.navbar -->
-      </div>
-
-      <!-- Jumbotron -->
-      {% block body %}
-      <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <a class="btn btn-large btn-success" href="#">Get started today</a>
-      </div>
-
-      <hr/>
-
-      <!-- Example row of columns -->
-      <div class="row-fluid">
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-       </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
       </div>
-
-      <hr/>
+      <div class="container content">
+      {% block content %}
       {% endblock %}
-      <div class="footer">{% load elements %}
-        {{ e|elem:"footer"|safe }}
       </div>
+    </div>
 
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/media/js/jquery-min.js"></script>
-    <script src="/media/js/bootstrap-min.js"></script>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -1,7 +1,20 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block title %}{% if page.title %}{{ page.title }}{% else %}Home Page{% endif %}{% endblock %}
 
-        {% block page_title %}{{ page.title }}{% endblock%}
-        {% block body %}
-        {{ page.content|safe }}
+        {% block content %}
+        <div class="row">
+          <div class="col-xs-12">
+            <h2>{{ page.title }}</h2>
+            {% if page.header %}<img src="/media/{{ page.header }}"/> {% endif %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-8">
+            {{ page.content|safe }}
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <h5>{{ sidebar.title }}</h5>
+            {{ sidebar.content|safe }}
+          </div>
+        </div>
         {% endblock %}

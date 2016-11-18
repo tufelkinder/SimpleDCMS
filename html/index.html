@@ -1,6 +1,36 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block title %}{% if page.title %}{{ page.title }}{% else %}Home Page{% endif %}{% endblock %}
 
-        {% block body %}
-        {{ page.content|safe }}
+        {% block content %}
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <h4>Welcome!</h4>
+            <ul class="nav2">
+              {% for n in nav2items %}
+              <li><a href="{% if n.link %}{{ n.link }}{% else %}/go/{{ n.slug }}{% endif %}">{{ n.name }}</a></li>{% endfor %}
+            </ul>
+          </div>
+          <div class="col-xs-12 col-md-8" style="text-align: center; padding: 10px;">
+              <img src="/media/img/....jpg" alt="...org..."/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            &nbsp;
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <h5>{{ sections.col1.heading|safe }}</h5>
+            {{ sections.col1.content|safe }}
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <h5>{{ sections.col2.heading|safe }}</h5>
+            {{ sections.col2.content|safe }}
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <h5>{{ sections.col3.heading|safe }}</h5>
+            {{ sections.col3.content|safe }}
+          </div>
+        </div>
         {% endblock %}
