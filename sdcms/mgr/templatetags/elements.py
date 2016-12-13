@@ -1,4 +1,4 @@
-from manager.models import *
+from mgr.models import *
 from django import template
 register = template.Library()
 

@@ -21,7 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'secret_key'
-from site_name.settings import SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': SITE,
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'db_user',
+        'PASSWORD': 'db_pass',
         'HOST': '127.0.0.1',
     }
 }
